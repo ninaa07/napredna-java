@@ -1,0 +1,19 @@
+<div class="card" id="card-dialog">
+    <form>
+
+        <div class="card-header" id="header-dialog">
+            <h2 class="modal-title" id="add-modal-label">Izdavanje Lokacijske Dozvole</h2>
+            <i class="tim-icons icon-simple-remove" (click)="close()"> </i>
+        </div>
+
+        <div class="card-body" id="body-dialog">
+            <p class="modal-title" id="add-modal-label">Da li ste sigurni da zelite da obrisete {{ title }}?</p>
+        </div>
+
+        <div class="card-footer" id="footer-dialog">
+            <button type="submit" class="btn btn-warning" (click)="save()">Potvrdi</button>
+            <button type="button" class="btn btn-default" (click)="close()">Poništi</button>
+        </div>
+
+    </form>
+</div>

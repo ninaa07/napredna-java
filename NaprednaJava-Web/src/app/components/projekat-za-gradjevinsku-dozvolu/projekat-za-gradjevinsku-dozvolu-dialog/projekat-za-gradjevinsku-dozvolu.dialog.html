@@ -1,0 +1,145 @@
+<div class="card" id="card-dialog">
+  <form>
+
+    <div class="card-header" id="header-dialog">
+      <h2 *ngIf="pgd.naziv" class="modal-title" id="add-modal-label">{{ data.title }} "{{ pgd.naziv }}"</h2>
+      <h2 *ngIf="!pgd.naziv" class="modal-title" id="add-modal-label">{{ data.title }}</h2>
+      <i class="tim-icons icon-simple-remove" (click)="close()"></i>
+    </div>
+
+    <div class="card-body" id="body-dialog">
+      <div class="row top-row">
+        <div class="column" style="width: 60%; height: fit-content;">
+          <div [disabled]="disabledBtn" class="row naziv-projekta">
+            <label id="first-row"> Naziv Projekta </label>
+            <input matInput class="form-control" [disabled]="this.data.action === 'view'" type="text" name="naziv"
+              [(ngModel)]="pgd.naziv" />
+          </div>
+          <div ngbDropdown class="d-inline-block">
+            <button class="btn btn-outline-primary" [disabled]="this.data.action === 'view' || disabledBtn"
+              ngbDropdownToggle>{{ selectedIr }}</button>
+            <div ngbDropdownMenu>
+              <button *ngFor="let ir of idejnaResenja" ngbDropdownItem
+                (click)="changeSelectionIr(ir)">{{ ir.naziv }}</button>
+            </div>
+          </div>
+          <div class="row">
+            <label id="first-row"> Naziv Projektanta </label>
+            <input matInput class="form-control" disabled type="text" value="{{ nazivProjektanta }}" />
+          </div>
+        </div>
+        <div id="section" class="column" style="width: 40%; height: fit-content;">
+          <div class="row">
+            <label> Datum Izrade</label>
+            <input class="form-control" disabled type="text" value="{{ datumIzrade | date }}" name="datum" />
+          </div>
+        </div>
+      </div>
+      <div id="section" class="column" style="margin-top: 10px;">
+        <label class="section-label">Spisak površina</label>
+        <div style="width: 100%;">
+          <mat-table [dataSource]="dataSource">
+            <form>
+              <ng-container matColumnDef="NazivPovrsine">
+                <th mat-header-cell *matHeaderCellDef> Naziv Površine </th>
+                <td mat-cell *matCellDef="let element; let i = index;">
+                  <input matInput class="form-control" [disabled]="!element.isEditable" name="naziv{{i}}" type="text"
+                    [(ngModel)]="element.naziv" />
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Oznaka">
+                <th mat-header-cell *matHeaderCellDef> Oznaka </th>
+                <td mat-cell *matCellDef="let element; let i = index;">
+                  <input matInput class="form-control" [disabled]="!element.isEditable" name="oznaka{{i}}" type="number"
+                    [(ngModel)]="element.oznaka" />
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="VrstaPoda">
+                <th mat-header-cell *matHeaderCellDef> Vrsta Poda </th>
+                <td mat-cell *matCellDef="let element; let i = index;">
+                  <input matInput class="form-control" [disabled]="!element.isEditable" name="vrstaPoda{{i}}"
+                    type="text" [(ngModel)]="element.vrstaPoda" />
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="VrstaPovrsine">
+                <th mat-header-cell *matHeaderCellDef> Vrsta Površine </th>
+                <td mat-cell *matCellDef="let element">
+                  <div ngbDropdown class="d-inline-block">
+                    <button *ngIf="element.vrstaPovrsine" class="btn btn-outline-primary"
+                      [disabled]="!element.isEditable" ngbDropdownToggle>{{ element.vrstaPovrsine.naziv }}</button>
+                    <button *ngIf="!element.vrstaPovrsine" class="btn btn-outline-primary"
+                      [disabled]="!element.isEditable" ngbDropdownToggle>Vrsta Površine</button>
+                    <div ngbDropdownMenu>
+                      <button *ngFor="let vp of vrstePovrsina" ngbDropdownItem
+                        (click)="changeSelectionVp(vp, element)">{{ vp.naziv }}</button>
+                    </div>
+                  </div>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Prostorija">
+                <th mat-header-cell *matHeaderCellDef> Prostorija </th>
+                <td mat-cell *matCellDef="let element">
+                  <div ngbDropdown class="d-inline-block">
+                    <button *ngIf="!element.prostorijaNaziv" class="btn btn-outline-primary"
+                      [disabled]="!element.isEditable || !element.vrstaPovrsine" ngbDropdownToggle>Prostorije</button>
+                    <button *ngIf="element.prostorijaNaziv" class="btn btn-outline-primary"
+                      [disabled]="!element.isEditable || !element.vrstaPovrsine"
+                      ngbDropdownToggle>{{ element.prostorijaNaziv }}</button>
+                    <div *ngIf="element.vrstaPovrsine" ngbDropdownMenu>
+                      <div *ngFor="let p of element.vrstaPovrsine.prostorije" ngbDropdownItem
+                        (click)="changeSelectionP(p, element)">
+                        {{ p.naziv }}</div>
+                    </div>
+                  </div>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Izmeni">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element">
+                  <i matIcon class="tim-icons icon-pencil" id="edit-icon" matTooltip="Izmeni" (click)="edit(element)"
+                    *ngIf="!element.isEditable && this.data.action!=='view'"></i>
+
+                  <i matIcon class="tim-icons icon-check-2" matTooltip="Potvrdi" (click)="saveElement(element)"
+                    *ngIf="element.isEditable"></i>
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="Obrisi">
+                <th mat-header-cell *matHeaderCellDef>
+                  <i *ngIf="this.data.action!=='view'" class="tim-icons icon-simple-add"
+                    matTooltip="Dodaj novu površinu" (click)="add()"></i>
+                </th>
+                <td mat-cell *matCellDef="let element">
+                  <i matIcon class="tim-icons icon-trash-simple" id="delete-icon" matTooltip="Obriši"
+                    (click)="delete(element)" *ngIf="!element.isEditable && this.data.action!=='view'"></i>
+
+                  <i matIcon class="tim-icons  icon-simple-remove" matTooltip="Poništi" (click)="resetFields(element)"
+                    *ngIf="element.isEditable"></i>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </form>
+          </mat-table>
+        </div>
+      </div>
+      <div class="row status-dokumenta">
+        <label>Status Dokumenta</label>
+        <input class="form-control" disabled type="text" value="{{ pgd.statusDokumenta | statusDokumentaPipe }}" />
+      </div>
+    </div>
+
+    <div class="card-footer" id="footer-dialog">
+      <button *ngIf="this.data.action!=='view'" type="submit" class="btn btn-warning" [disabled]="disabledBtn"
+        (click)="save()">Potvrdi</button>
+      <button *ngIf="this.data.action!=='view'" type="button" class="btn btn-default" (click)="close()">Poništi</button>
+      <button *ngIf="this.data.action==='view'" type="button" class="btn btn-default" (click)="close()">Zatvori</button>
+    </div>
+
+  </form>
+</div>

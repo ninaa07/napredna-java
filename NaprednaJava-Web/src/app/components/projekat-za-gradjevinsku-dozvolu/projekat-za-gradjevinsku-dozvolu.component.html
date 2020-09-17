@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">PROJEKAT ZA GRAĐEVINSKU DOZVOLU</h3>
+                <i class="tim-icons icon-simple-add" matTooltip="Dodaj" (click)="add()"></i>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table tablesorter">
+                        <thead class="text-primary">
+                            <tr>
+                                <th>Naziv Projekta</th>
+                                <th>Datum Izrade</th>
+                                <th>Status Dokumenta</th>
+                                <th>Površine</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let pgd of projektiZaGD">
+                                <td>{{ pgd.naziv }}</td>
+                                <td>{{ pgd.datumIzrade | date: 'dd/MM/yyyy' }}</td>
+                                <td>{{ pgd.statusDokumenta | statusDokumentaPipe }}</td>
+                                <td>
+                                    <div ngbDropdown class="d-inline-block">
+                                        <button class="btn btn-outline-primary" ngbDropdownToggle>Površine</button>
+                                        <div ngbDropdownMenu>
+                                            <div *ngFor="let p of pgd.povrsine" ngbDropdownItem>{{ p.naziv }}</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <i matIcon class="tim-icons icon-single-copy-04" id="view-icon"
+                                        matTooltip="Pregledaj" (click)="open(pgd.id)"></i>
+                                    <i matIcon class="tim-icons icon-pencil" id="edit-icon" matTooltip="Izmeni"
+                                        (click)="edit(pgd)"></i>
+                                    <i matIcon class="tim-icons icon-trash-simple" id="delete-icon" matTooltip="Obriši"
+                                        (click)="delete(pgd.id)"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
