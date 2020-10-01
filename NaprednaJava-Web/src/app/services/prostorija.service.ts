@@ -14,7 +14,7 @@ const httpOptions = {
 
 export class ProstorijaService {
 
-    url = 'https://localhost:44306/api/prostorije/';
+    url = 'http://localhost:8080/api/prostorije/';
 
     constructor(private http: HttpClient) { }
 
@@ -22,8 +22,8 @@ export class ProstorijaService {
         return this.http.get<Prostorija[]>(this.url);
     }
 
-    getById(id: number): Observable<Prostorija> {
-        return this.http.get<Prostorija>(this.url + `${id}`);
+    getById(id: number): Observable<ServiceResult> {
+        return this.http.get<ServiceResult>(this.url + `${id}`);
     }
 
     add(prostorija: Prostorija): Observable<ServiceResult> {

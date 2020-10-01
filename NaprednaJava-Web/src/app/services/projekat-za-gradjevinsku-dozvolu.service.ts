@@ -16,7 +16,7 @@ const httpOptions = {
 
 export class ProjekatZaGradjevinskuDozvoluService {
 
-    url = 'https://localhost:44306/api/projektiZaGradjevinskuDozvolu/';
+    url = 'http://localhost:8080/api/projektiZaGradjevinskuDozvolu/';
 
     constructor(
         private http: HttpClient,
@@ -27,18 +27,18 @@ export class ProjekatZaGradjevinskuDozvoluService {
         return this.http.get<ProjekatZaGradjevinskuDozvolu[]>(this.url);
     }
 
-    getById(id: number): Observable<ProjekatZaGradjevinskuDozvolu> {
-        return this.http.get<ProjekatZaGradjevinskuDozvolu>(this.url + `${id}`);
+    getById(id: number): Observable<ServiceResult> {
+        return this.http.get<ServiceResult>(this.url + `${id}`);
     }
 
     add(projekatZaGradjevinskuDozvolu: ProjekatZaGradjevinskuDozvolu): Observable<ServiceResult> {
-        this.updatePovrsineList(projekatZaGradjevinskuDozvolu.povrsine);
+        // this.updatePovrsineList(projekatZaGradjevinskuDozvolu.povrsine);
         projekatZaGradjevinskuDozvolu.statusDokumenta = StatusDokumenta.Kreiran;
         return this.http.post<ServiceResult>(this.url, projekatZaGradjevinskuDozvolu, httpOptions);
     }
 
     update(projekatZaGradjevinskuDozvolu: ProjekatZaGradjevinskuDozvolu, id: number): Observable<ServiceResult> {
-        this.updatePovrsineList(projekatZaGradjevinskuDozvolu.povrsine);
+        // this.updatePovrsineList(projekatZaGradjevinskuDozvolu.povrsine);
         projekatZaGradjevinskuDozvolu.statusDokumenta = StatusDokumenta.Obradjen;
         return this.http.put<ServiceResult>(this.url + `${id}`, projekatZaGradjevinskuDozvolu, httpOptions);
     }
@@ -47,15 +47,15 @@ export class ProjekatZaGradjevinskuDozvoluService {
         return this.http.delete<ServiceResult>(this.url + `${id}`, httpOptions);
     }
 
-    updatePovrsineList(povrsine: Povrsina[]) {
-        povrsine.forEach(element => {
-            if (element.status === Status.Insert) {
-                this.povrsinaService.add(element);
-            } else if (element.status === Status.Update) {
-                this.povrsinaService.update(element, element.id);
-            } else if (element.status === Status.Delete) {
-                this.povrsinaService.delete(element.id);
-            }
-        });
-    }
+    // updatePovrsineList(povrsine: Povrsina[]) {
+    //     povrsine.forEach(element => {
+    //         if (element.status === Status.Insert) {
+    //             this.povrsinaService.add(element);
+    //         } else if (element.status === Status.Update) {
+    //             this.povrsinaService.update(element, element.id);
+    //         } else if (element.status === Status.Delete) {
+    //             this.povrsinaService.delete(element.id);
+    //         }
+    //     });
+    // }
 }

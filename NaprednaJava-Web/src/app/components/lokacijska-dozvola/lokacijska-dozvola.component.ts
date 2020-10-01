@@ -64,9 +64,9 @@ export class LokacijskaDozvolaComponent implements OnInit {
       const dialogRef = this.dialog.open(LokacijskaDozvolaDialog, {
         width: '700px',
         data: {
-          title: 'Pregled lokacijske dozvole: ' + result.naziv,
+          title: 'Pregled lokacijske dozvole: ' + result.resultObject.naziv,
           informacijeOLokaciji: this.informacijeOLokaciji,
-          lokacijskaDozvola: result,
+          lokacijskaDozvola: result.resultObject,
           action: 'view'
         },
         autoFocus: true,

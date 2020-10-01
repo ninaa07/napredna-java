@@ -6,49 +6,39 @@ import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 public class IdejnoResenje {
 
-    private final UUID id;
+    private final Integer id;
 
     @NotBlank
-    private final String naziv;
+    private String naziv;
 
     @NotBlank
-    private final Date datumIzrade;
+    private Date datumIzrade;
 
     @NotBlank
-    private final UUID glavniProjektantId;
-
-    private final GlavniProjektant glavniProjektant;
+    private Integer glavniProjektantId;
 
     @NotBlank
-    private final UUID objekatId;
-
-    private final Objekat objekat;
+    private Integer objekatId;
 
     @NotBlank
-    private final UUID lokacijskaDozvolaId;
+    private Integer lokacijskaDozvolaId;
 
-    private final LokacijskaDozvola lokacijskaDozvola;
+    private List<ProjekatZaGradjevinskuDozvolu> projektiZaGradjevinskuDozvolu;
 
-    private final List<ProjekatZaGradjevinskuDozvolu> projektiZaGradjevinskuDozvolu;
-
-    public IdejnoResenje(@JsonProperty("id") UUID id, @JsonProperty("naziv") String naziv, @JsonProperty("datumIzrade") Date datumIzrade, @JsonProperty("glavniProjektantId") UUID glavniProjektantId, GlavniProjektant glavniProjektant, @JsonProperty("objekatId") UUID objekatId, Objekat objekat, @JsonProperty("lokacijskaDozvolaId") UUID lokacijskaDozvolaId, LokacijskaDozvola lokacijskaDozvola) {
+    public IdejnoResenje(@JsonProperty("id") Integer id, @JsonProperty("naziv") String naziv, @JsonProperty("datumIzrade") Date datumIzrade, @JsonProperty("glavniProjektantId") Integer glavniProjektantId, @JsonProperty("objekatId") Integer objekatId, @JsonProperty("lokacijskaDozvolaId") Integer lokacijskaDozvolaId) {
         this.id = id;
         this.naziv = naziv;
         this.datumIzrade = datumIzrade;
         this.glavniProjektantId = glavniProjektantId;
-        this.glavniProjektant = glavniProjektant;
         this.objekatId = objekatId;
-        this.objekat = objekat;
         this.lokacijskaDozvolaId = lokacijskaDozvolaId;
-        this.lokacijskaDozvola = lokacijskaDozvola;
         projektiZaGradjevinskuDozvolu = new ArrayList<>();
     }
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -60,31 +50,43 @@ public class IdejnoResenje {
         return datumIzrade;
     }
 
-    public UUID getGlavniProjektantId() {
+    public Integer getGlavniProjektantId() {
         return glavniProjektantId;
     }
 
-    public GlavniProjektant getGlavniProjektant() {
-        return glavniProjektant;
-    }
-
-    public UUID getObjekatId() {
+    public Integer getObjekatId() {
         return objekatId;
     }
 
-    public Objekat getObjekat() {
-        return objekat;
-    }
-
-    public UUID getLokacijskaDozvolaId() {
+    public Integer getLokacijskaDozvolaId() {
         return lokacijskaDozvolaId;
-    }
-
-    public LokacijskaDozvola getLokacijskaDozvola() {
-        return lokacijskaDozvola;
     }
 
     public List<ProjekatZaGradjevinskuDozvolu> getProjektiZaGradjevinskuDozvolu() {
         return projektiZaGradjevinskuDozvolu;
+    }
+
+    public void setNaziv(String naziv) {
+        this.naziv = naziv;
+    }
+
+    public void setDatumIzrade(Date datumIzrade) {
+        this.datumIzrade = datumIzrade;
+    }
+
+    public void setGlavniProjektantId(Integer glavniProjektantId) {
+        this.glavniProjektantId = glavniProjektantId;
+    }
+
+    public void setObjekatId(Integer objekatId) {
+        this.objekatId = objekatId;
+    }
+
+    public void setLokacijskaDozvolaId(Integer lokacijskaDozvolaId) {
+        this.lokacijskaDozvolaId = lokacijskaDozvolaId;
+    }
+
+    public void setProjektiZaGradjevinskuDozvolu(List<ProjekatZaGradjevinskuDozvolu> projektiZaGradjevinskuDozvolu) {
+        this.projektiZaGradjevinskuDozvolu = projektiZaGradjevinskuDozvolu;
     }
 }

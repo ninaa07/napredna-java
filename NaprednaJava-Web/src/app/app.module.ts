@@ -23,8 +23,13 @@ import { ProjekatZaGradjevinskuDozvoluDialog } from './components/projekat-za-gr
 import { StatusDokumentaPipe } from './pipes/status-dokumenta.pipe';
 import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { IzvestajOIzvrsenjuRadovaDialog } from './components/izvestaj-o-izvrsenju-radova/izvestaj-o-izvrsenju-radova-dialog/izvestaj-o-izvrsenju-radova.dialog';
+import { IzvestajOIzvrsenjuRadovaComponent } from './components/izvestaj-o-izvrsenju-radova/izvestaj-o-izvrsenju-radova.component';
+import { NalogZaUplatuDialog } from './components/nalog-za-uplatu/nalog-za-uplatu-dialog/nalog-za-uplatu.dialog';
+import { NalogZaUplatuComponent } from './components/nalog-za-uplatu/nalog-za-uplatu.component';
+import { SlozeniPage } from './pages/slozeni/slozeni.page';
+import { ProstiPage } from './pages/prosti/prosti.page';
 
 @NgModule({
   imports: [
@@ -59,14 +64,22 @@ import { MatInputModule } from '@angular/material/input';
     LokacijskaDozvolaDialog,
     ProjekatZaGradjevinskuDozvoluComponent,
     ProjekatZaGradjevinskuDozvoluDialog,
-    StatusDokumentaPipe
+    NalogZaUplatuComponent,
+    NalogZaUplatuDialog,
+    IzvestajOIzvrsenjuRadovaComponent,
+    IzvestajOIzvrsenjuRadovaDialog,
+    StatusDokumentaPipe,
+    ProstiPage,
+    SlozeniPage
   ],
   providers: [DatePipe, NgbDropdownConfig, StatusDokumentaPipe],
   bootstrap: [AppComponent],
   entryComponents: [
     ConfirmDialog,
     LokacijskaDozvolaDialog,
-    ProjekatZaGradjevinskuDozvoluDialog
+    ProjekatZaGradjevinskuDozvoluDialog,
+    NalogZaUplatuDialog,
+    IzvestajOIzvrsenjuRadovaDialog
   ]
 })
 export class AppModule { }

@@ -5,24 +5,24 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class GlavniProjektant {
 
-    private final UUID id;
+    @NotBlank
+    private Integer id;
 
     @NotBlank
-    private final String imePrezime;
+    private String imePrezime;
 
     @NotBlank
-    private final Long brojLicence;
+    private Long brojLicence;
 
     @NotBlank
-    private final String zvanje;
+    private String zvanje;
 
-    private final List<IdejnoResenje> idejnaResenja;
+    private List<IdejnoResenje> idejnaResenja;
 
-    public GlavniProjektant(@JsonProperty("id") UUID id, @JsonProperty("imePrezime") String imePrezime, @JsonProperty("brojLicence") Long brojLicence, @JsonProperty("zvanje") String zvanje) {
+    public GlavniProjektant(@JsonProperty("id") Integer id, @JsonProperty("imePrezime") String imePrezime, @JsonProperty("brojLicence") Long brojLicence, @JsonProperty("zvanje") String zvanje) {
         this.id = id;
         this.imePrezime = imePrezime;
         this.brojLicence = brojLicence;
@@ -30,7 +30,7 @@ public class GlavniProjektant {
         idejnaResenja = new ArrayList<>();
     }
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -48,5 +48,23 @@ public class GlavniProjektant {
 
     public List<IdejnoResenje> getIdejnaResenja() {
         return idejnaResenja;
+    }
+
+    public void setId(Integer id) { this.id = id; }
+
+    public void setImePrezime(String imePrezime) {
+        this.imePrezime = imePrezime;
+    }
+
+    public void setBrojLicence(Long brojLicence) {
+        this.brojLicence = brojLicence;
+    }
+
+    public void setZvanje(String zvanje) {
+        this.zvanje = zvanje;
+    }
+
+    public void setIdejnaResenja(List<IdejnoResenje> idejnaResenja) {
+        this.idejnaResenja = idejnaResenja;
     }
 }

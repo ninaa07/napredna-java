@@ -14,7 +14,7 @@ const httpOptions = {
 
 export class IdejnoResenjeService {
 
-    url = 'https://localhost:44306/api/idejnaResenja/';
+    url = 'http://localhost:8080/api/idejnaResenja/';
 
     constructor(private http: HttpClient) { }
 
@@ -22,8 +22,8 @@ export class IdejnoResenjeService {
         return this.http.get<IdejnoResenje[]>(this.url);
     }
 
-    getById(id: number): Observable<IdejnoResenje> {
-        return this.http.get<IdejnoResenje>(this.url + `${id}`);
+    getById(id: number): Observable<ServiceResult> {
+        return this.http.get<ServiceResult>(this.url + `${id}`);
     }
 
     add(idejnoResenje: IdejnoResenje): Observable<ServiceResult> {

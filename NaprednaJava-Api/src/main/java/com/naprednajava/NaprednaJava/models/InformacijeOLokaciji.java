@@ -6,27 +6,26 @@ import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 public class InformacijeOLokaciji {
 
-    private final UUID id;
+    private final Integer id;
 
     @NotBlank
-    private final String naziv;
+    private String naziv;
 
     @NotBlank
-    private final Date datumIzdavanja;
+    private Date datumIzdavanja;
 
     @NotBlank
-    private final String namenaZemljista;
+    private String namenaZemljista;
 
     @NotBlank
-    private final String zona;
+    private String zona;
 
-    private final List<LokacijskaDozvola> lokacijskeDozvole;
+    private List<LokacijskaDozvola> lokacijskeDozvole;
 
-    public InformacijeOLokaciji(@JsonProperty("id") UUID id, @JsonProperty("naziv") String naziv, @JsonProperty("datumIzdavanja") Date datumIzdavanja, @JsonProperty("namenaZemljista") String namenaZemljista, @JsonProperty("zona") String zona) {
+    public InformacijeOLokaciji(@JsonProperty("id") Integer id, @JsonProperty("naziv") String naziv, @JsonProperty("datumIzdavanja") Date datumIzdavanja, @JsonProperty("namenaZemljista") String namenaZemljista, @JsonProperty("zona") String zona) {
         this.id = id;
         this.naziv = naziv;
         this.datumIzdavanja = datumIzdavanja;
@@ -35,7 +34,7 @@ public class InformacijeOLokaciji {
         lokacijskeDozvole = new ArrayList<>();
     }
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -57,5 +56,25 @@ public class InformacijeOLokaciji {
 
     public List<LokacijskaDozvola> getLokacijskeDozvole() {
         return lokacijskeDozvole;
+    }
+
+    public void setNaziv(String naziv) {
+        this.naziv = naziv;
+    }
+
+    public void setDatumIzdavanja(Date datumIzdavanja) {
+        this.datumIzdavanja = datumIzdavanja;
+    }
+
+    public void setNamenaZemljista(String namenaZemljista) {
+        this.namenaZemljista = namenaZemljista;
+    }
+
+    public void setZona(String zona) {
+        this.zona = zona;
+    }
+
+    public void setLokacijskeDozvole(List<LokacijskaDozvola> lokacijskeDozvole) {
+        this.lokacijskeDozvole = lokacijskeDozvole;
     }
 }

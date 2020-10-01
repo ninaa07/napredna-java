@@ -7,43 +7,40 @@ import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 public class ProjekatZaGradjevinskuDozvolu {
 
-    private final UUID id;
+    @NotBlank
+    private Integer id;
 
     @NotBlank
-    private final String naziv;
+    private String naziv;
 
     @NotBlank
-    private final Date datumIzrade;
+    private Date datumIzrade;
 
     @NotBlank
-    private final String nazivIdejnogResenja;
+    private String nazivIdejnogResenja;
 
     @NotBlank
-    private final StatusDokumenta statusDokumenta;
+    private StatusDokumenta statusDokumenta;
 
     @NotBlank
-    private final UUID idejnoResenjeId;
+    private Integer idejnoResenjeId;
 
-    private final IdejnoResenje idejnoResenje;
+    private List<Povrsina> povrsine;
 
-    private final List<Povrsina> povrsine;
-
-    public ProjekatZaGradjevinskuDozvolu(@JsonProperty("id") UUID id, @JsonProperty("naziv") String naziv, @JsonProperty("datumIzrade") Date datumIzrade, @JsonProperty("nazivIdejnogResenja") String nazivIdejnogResenja, @JsonProperty("statusDokumenta") StatusDokumenta statusDokumenta, @JsonProperty("idejnoResenjeId") UUID idejnoResenjeId, IdejnoResenje idejnoResenje) {
+    public ProjekatZaGradjevinskuDozvolu(@JsonProperty("id") Integer id, @JsonProperty("naziv") String naziv, @JsonProperty("datumIzrade") Date datumIzrade, @JsonProperty("nazivIdejnogResenja") String nazivIdejnogResenja, @JsonProperty("statusDokumenta") StatusDokumenta statusDokumenta, @JsonProperty("idejnoResenjeId") Integer idejnoResenjeId) {
         this.id = id;
         this.naziv = naziv;
         this.datumIzrade = datumIzrade;
         this.nazivIdejnogResenja = nazivIdejnogResenja;
         this.statusDokumenta = statusDokumenta;
         this.idejnoResenjeId = idejnoResenjeId;
-        this.idejnoResenje = idejnoResenje;
         povrsine = new ArrayList<>();
     }
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -63,15 +60,39 @@ public class ProjekatZaGradjevinskuDozvolu {
         return statusDokumenta;
     }
 
-    public UUID getIdejnoResenjeId() {
+    public Integer getIdejnoResenjeId() {
         return idejnoResenjeId;
-    }
-
-    public IdejnoResenje getIdejnoResenje() {
-        return idejnoResenje;
     }
 
     public List<Povrsina> getPovrsine() {
         return povrsine;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setNaziv(String naziv) {
+        this.naziv = naziv;
+    }
+
+    public void setDatumIzrade(Date datumIzrade) {
+        this.datumIzrade = datumIzrade;
+    }
+
+    public void setNazivIdejnogResenja(String nazivIdejnogResenja) {
+        this.nazivIdejnogResenja = nazivIdejnogResenja;
+    }
+
+    public void setStatusDokumenta(StatusDokumenta statusDokumenta) {
+        this.statusDokumenta = statusDokumenta;
+    }
+
+    public void setIdejnoResenjeId(Integer idejnoResenjeId) {
+        this.idejnoResenjeId = idejnoResenjeId;
+    }
+
+    public void setPovrsine(List<Povrsina> povrsine) {
+        this.povrsine = povrsine;
     }
 }

@@ -6,24 +6,23 @@ import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class Objekat {
 
-    private final UUID id;
+    private final Integer id;
 
     @NotBlank
-    private final String naziv;
+    private String naziv;
 
     @NotBlank
-    private final BigDecimal dimenzije;
+    private BigDecimal dimenzije;
 
     @NotBlank
-    private final String karakteristike;
+    private String karakteristike;
 
-    private final List<IdejnoResenje> idejnaResenja;
+    private List<IdejnoResenje> idejnaResenja;
 
-    public Objekat(@JsonProperty("id") UUID id, @JsonProperty("naziv") String naziv, @JsonProperty("dimenzije") BigDecimal dimenzije, @JsonProperty("karakteristike") String karakteristike) {
+    public Objekat(@JsonProperty("id") Integer id, @JsonProperty("naziv") String naziv, @JsonProperty("dimenzije") BigDecimal dimenzije, @JsonProperty("karakteristike") String karakteristike) {
         this.id = id;
         this.naziv = naziv;
         this.dimenzije = dimenzije;
@@ -31,7 +30,7 @@ public class Objekat {
         idejnaResenja = new ArrayList<>();
     }
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -49,5 +48,21 @@ public class Objekat {
 
     public List<IdejnoResenje> getIdejnaResenja() {
         return idejnaResenja;
+    }
+
+    public void setNaziv(String naziv) {
+        this.naziv = naziv;
+    }
+
+    public void setDimenzije(BigDecimal dimenzije) {
+        this.dimenzije = dimenzije;
+    }
+
+    public void setKarakteristike(String karakteristike) {
+        this.karakteristike = karakteristike;
+    }
+
+    public void setIdejnaResenja(List<IdejnoResenje> idejnaResenja) {
+        this.idejnaResenja = idejnaResenja;
     }
 }

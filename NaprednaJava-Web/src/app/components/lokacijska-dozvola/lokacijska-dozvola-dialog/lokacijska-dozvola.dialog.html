@@ -1,105 +1,99 @@
 <div class="card" id="card-dialog">
-    <form>
+  <form>
 
-        <div class="card-header" id="header-dialog">
-            <h2 class="modal-title" id="add-modal-label">{{ data.title }}</h2>
-            <i class="tim-icons icon-simple-remove" (click)="close()"></i>
-        </div>
+    <div class="card-header" id="header-dialog">
+      <h2 class="modal-title" id="add-modal-label">{{ data.title }}</h2>
+      <i class="tim-icons icon-simple-remove" (click)="close()"></i>
+    </div>
 
-        <div class="card-body" id="body-dialog">
-            <div class="row top-row">
-                <div class="column" style="width: 60%;">
-                    <div class="row">
-                        <div ngbDropdown class="d-inline-block">
-                            <button class="btn btn-outline-primary" [disabled]="this.data.action === 'view'"
-                                ngbDropdownToggle>{{ selectedIol }}</button>
-                            <div ngbDropdownMenu>
-                                <button *ngFor="let iol of informacijeOLokacijiList" ngbDropdownItem
-                                    (click)="changeSelectionIol(iol, iol.naziv)">{{ iol.naziv }}</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div *ngIf="this.data.action!=='add'" class="row">
-                        <div ngbDropdown class="d-inline-block">
-                            <button class="btn btn-outline-primary" [disabled]="this.data.action === 'view'"
-                                ngbDropdownToggle>{{ selectedIr }}</button>
-                            <div ngbDropdownMenu>
-                                <button *ngFor="let ir of lokacijskaDozvola.idejnaResenja" ngbDropdownItem
-                                    (click)="changeSelectionIr(ir, ir.naziv)">{{ ir.naziv }}</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="section" class="column" style="width: 40%; height: fit-content;">
-                    <div class="row">
-                        <label id="first-row"> Šifra Dozvole </label>
-                        <input class="form-control" disabled type="number" value="{{ lokacijskaDozvola.id }}" />
-                    </div>
-                    <div class="row">
-                        <label> Datum </label>
-                        <input class="form-control" disabled type="text" value="{{ datumIzdavanja | date }}"
-                            name="datum" />
-                    </div>
-                </div>
+    <div class="card-body" id="body-dialog">
+      <div class="row top-row">
+        <div class="column" style="width: 60%;">
+          <div class="row">
+            <div ngbDropdown class="d-inline-block">
+              <button class="btn btn-outline-primary" [disabled]="this.data.action === 'view'"
+                ngbDropdownToggle>{{ selectedIol }}</button>
+              <div ngbDropdownMenu>
+                <button *ngFor="let iol of informacijeOLokacijiList" ngbDropdownItem
+                  (click)="changeSelectionIol(iol, iol.naziv)">{{ iol.naziv }}</button>
+              </div>
             </div>
-            <div id="section" class="column" style="margin-top: 10px;">
-                <label class="section-label">Podaci o dozvoli</label>
-                <div appearance="outline" floatLabel="auto" class="row">
-                    <label> Naziv </label>
-                    <input class="form-control" placeholder="Naziv" type="text" required name="naziv"
-                        [(ngModel)]="lokacijskaDozvola.naziv" [disabled]="this.data.action === 'view'" />
-                </div>
-                <div appearance="outline" floatLabel="auto" class="row">
-                    <label> Opšti Podaci </label>
-                    <input class="form-control" placeholder="Opšti Podaci" type="text" required name="opstiPodaci"
-                        [(ngModel)]="lokacijskaDozvola.opstiPodaci" [disabled]="this.data.action === 'view'" />
-                </div>
-                <div appearance="outline" floatLabel="auto" class="row">
-                    <label> Lokacijski Uslovi </label>
-                    <input class="form-control" placeholder="Lokacijski Uslovi" type="text" required
-                        name="lokacijskiUslovi" [(ngModel)]="lokacijskaDozvola.lokacijskiUslovi"
-                        [disabled]="this.data.action === 'view'" />
-                </div>
+          </div>
+          <div *ngIf="this.data.action!=='add'" class="row">
+            <div ngbDropdown class="d-inline-block">
+              <button class="btn btn-outline-primary" [disabled]="this.data.action === 'view'"
+                ngbDropdownToggle>{{ selectedIr }}</button>
+              <div ngbDropdownMenu>
+                <button *ngFor="let ir of lokacijskaDozvola.idejnaResenja" ngbDropdownItem
+                  (click)="changeSelectionIr(ir, ir.naziv)">{{ ir.naziv }}</button>
+              </div>
             </div>
-            <div id="section" class="column" style="margin-top: 10px;">
-                <label class="section-label">Podaci o objektu</label>
-                <div appearance="outline" floatLabel="auto" class="row">
-                    <label> Naziv </label>
-                    <input class="form-control" placeholder="Naziv" type="text" [disabled]="this.data.action!=='add'"
-                        value="{{ nazivObjekta }}" />
-                </div>
-                <div appearance="outline" floatLabel="auto" class="row">
-                    <label> Broj Parcele </label>
-                    <input class="form-control" placeholder="Broj parcele" required type="number" name="brojParcele"
-                        [(ngModel)]="lokacijskaDozvola.brojParcele" [disabled]="this.data.action === 'view'" />
-                </div>
-                <div appearance="outline" floatLabel="auto" class="row">
-                    <label> Površina Parcele </label>
-                    <input class="form-control" placeholder="Površina parcele" required type="number"
-                        name="povrsinaParcele" [(ngModel)]="lokacijskaDozvola.povrsinaParcele"
-                        [disabled]="this.data.action === 'view'" />
-                </div>
-                <div appearance="outline" floatLabel="auto" class="row">
-                    <label> Zona </label>
-                    <input class="form-control" disabled type="text" [(ngModel)]="informacijeOLokaciji.zona"
-                        value="{{ informacijeOLokaciji.zona }}" name="zona" />
-                </div>
-                <div appearance="outline" floatLabel="auto" class="row">
-                    <label> Namena Zemljišta </label>
-                    <input class="form-control" disabled type="text" [(ngModel)]="informacijeOLokaciji.namenaZemljista"
-                        value="{{ informacijeOLokaciji.namenaZemljista }}" name="namenaZemljista" />
-                </div>
-            </div>
+          </div>
         </div>
-
-        <div class="card-footer" id="footer-dialog">
-            <button *ngIf="this.data.action!=='view'" type="submit" class="btn btn-warning"
-                (click)="save()">Potvrdi</button>
-            <button *ngIf="this.data.action!=='view'" type="button" class="btn btn-default"
-                (click)="close()">Poništi</button>
-            <button *ngIf="this.data.action==='view'" type="button" class="btn btn-default"
-                (click)="close()">Zatvori</button>
+        <div id="section" class="column" style="width: 40%; height: fit-content;">
+          <div class="row">
+            <label id="first-row"> Šifra Dozvole </label>
+            <input class="form-control" disabled type="number" value="{{ lokacijskaDozvola.id }}" />
+          </div>
+          <div class="row">
+            <label> Datum </label>
+            <input class="form-control" disabled type="text" value="{{ datumIzdavanja | date }}" name="datum" />
+          </div>
         </div>
+      </div>
+      <div id="section" class="column" style="margin-top: 10px;">
+        <label class="section-label">Podaci o dozvoli</label>
+        <div appearance="outline" floatLabel="auto" class="row">
+          <label> Naziv </label>
+          <input class="form-control" placeholder="Naziv" type="text" required name="naziv"
+            [(ngModel)]="lokacijskaDozvola.naziv" [disabled]="this.data.action === 'view'" />
+        </div>
+        <div appearance="outline" floatLabel="auto" class="row">
+          <label> Opšti Podaci </label>
+          <input class="form-control" placeholder="Opšti Podaci" type="text" required name="opstiPodaci"
+            [(ngModel)]="lokacijskaDozvola.opstiPodaci" [disabled]="this.data.action === 'view'" />
+        </div>
+        <div appearance="outline" floatLabel="auto" class="row">
+          <label> Lokacijski Uslovi </label>
+          <input class="form-control" placeholder="Lokacijski Uslovi" type="text" required name="lokacijskiUslovi"
+            [(ngModel)]="lokacijskaDozvola.lokacijskiUslovi" [disabled]="this.data.action === 'view'" />
+        </div>
+      </div>
+      <div id="section" class="column" style="margin-top: 10px;">
+        <label class="section-label">Podaci o objektu</label>
+        <div appearance="outline" floatLabel="auto" class="row">
+          <label> Naziv </label>
+          <input class="form-control" placeholder="Naziv" type="text" [disabled]="this.data.action!=='add'"
+            value="{{ nazivObjekta }}" />
+        </div>
+        <div appearance="outline" floatLabel="auto" class="row">
+          <label> Broj Parcele </label>
+          <input class="form-control" placeholder="Broj parcele" required type="number" name="brojParcele"
+            [(ngModel)]="lokacijskaDozvola.brojParcele" [disabled]="this.data.action === 'view'" />
+        </div>
+        <div appearance="outline" floatLabel="auto" class="row">
+          <label> Površina Parcele </label>
+          <input class="form-control" placeholder="Površina parcele" required type="number" name="povrsinaParcele"
+            [(ngModel)]="lokacijskaDozvola.povrsinaParcele" [disabled]="this.data.action === 'view'" />
+        </div>
+        <div appearance="outline" floatLabel="auto" class="row">
+          <label> Zona </label>
+          <input class="form-control" disabled type="text" [(ngModel)]="informacijeOLokaciji.zona"
+            value="{{ informacijeOLokaciji.zona }}" name="zona" />
+        </div>
+        <div appearance="outline" floatLabel="auto" class="row">
+          <label> Namena Zemljišta </label>
+          <input class="form-control" disabled type="text" [(ngModel)]="informacijeOLokaciji.namenaZemljista"
+            value="{{ informacijeOLokaciji.namenaZemljista }}" name="namenaZemljista" />
+        </div>
+      </div>
+    </div>
 
-    </form>
+    <div class="card-footer" id="footer-dialog">
+      <button *ngIf="this.data.action!=='view'" type="submit" class="btn btn-warning" (click)="save()">Potvrdi</button>
+      <button *ngIf="this.data.action!=='view'" type="button" class="btn btn-default" (click)="close()">Poništi</button>
+      <button *ngIf="this.data.action==='view'" type="button" class="btn btn-default" (click)="close()">Zatvori</button>
+    </div>
+
+  </form>
 </div>

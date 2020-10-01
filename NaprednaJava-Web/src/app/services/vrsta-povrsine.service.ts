@@ -14,7 +14,7 @@ const httpOptions = {
 
 export class VrstaPovrsineService {
 
-    url = 'https://localhost:44306/api/vrstePovrsina/';
+    url = 'http://localhost:8080/api/vrstePovrsina/';
 
     constructor(private http: HttpClient) { }
 
@@ -22,8 +22,8 @@ export class VrstaPovrsineService {
         return this.http.get<VrstaPovrsine[]>(this.url);
     }
 
-    getById(id: number): Observable<VrstaPovrsine> {
-        return this.http.get<VrstaPovrsine>(this.url + `${id}`);
+    getById(id: number): Observable<ServiceResult> {
+        return this.http.get<ServiceResult>(this.url + `${id}`);
     }
 
     add(vrstaPovrsine: VrstaPovrsine): Observable<ServiceResult> {

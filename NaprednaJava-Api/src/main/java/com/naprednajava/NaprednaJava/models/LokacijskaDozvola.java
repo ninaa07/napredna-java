@@ -6,41 +6,39 @@ import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 public class LokacijskaDozvola {
 
-    private final UUID id;
+    @NotBlank
+    private Integer id;
 
     @NotBlank
-    private final String naziv;
+    private String naziv;
 
     @NotBlank
-    private final String opstiPodaci;
+    private String opstiPodaci;
 
     @NotBlank
-    private final String lokacijskiUslovi;
+    private String lokacijskiUslovi;
 
     @NotBlank
-    private final Long brojParcele;
+    private Long brojParcele;
 
     @NotBlank
-    private final Long povrsinaParcele;
+    private Long povrsinaParcele;
 
     @NotBlank
-    private final String nazivIdejnogResenja;
+    private String nazivIdejnogResenja;
 
     @NotBlank
-    private final Date datumIzdavanja;
+    private Date datumIzdavanja;
 
     @NotBlank
-    private final UUID informacijeOLokacijiId;
+    private Integer informacijeOLokacijiId;
 
-    private final InformacijeOLokaciji informacijeOLokaciji;
+    private List<IdejnoResenje> idejnaResenja;
 
-    private final List<IdejnoResenje> idejnaResenja;
-
-    public LokacijskaDozvola(@JsonProperty("id") UUID id, @JsonProperty("naziv") String naziv, @JsonProperty("opstiPodaci") String opstiPodaci, @JsonProperty("lokacijskiUslovi") String lokacijskiUslovi, @JsonProperty("brojParcele") Long brojParcele, @JsonProperty("povrsinaParcele") Long povrsinaParcele, @JsonProperty("nazivIdejnogResenja") String nazivIdejnogResenja, @JsonProperty("datumIzdavanja") Date datumIzdavanja, @JsonProperty("informacijeOLokacijiId") UUID informacijeOLokacijiId, InformacijeOLokaciji informacijeOLokaciji) {
+    public LokacijskaDozvola(@JsonProperty("id") Integer id, @JsonProperty("naziv") String naziv, @JsonProperty("opstiPodaci") String opstiPodaci, @JsonProperty("lokacijskiUslovi") String lokacijskiUslovi, @JsonProperty("brojParcele") Long brojParcele, @JsonProperty("povrsinaParcele") Long povrsinaParcele, @JsonProperty("nazivIdejnogResenja") String nazivIdejnogResenja, @JsonProperty("datumIzdavanja") Date datumIzdavanja, @JsonProperty("informacijeOLokacijiId") Integer informacijeOLokacijiId) {
         this.id = id;
         this.naziv = naziv;
         this.opstiPodaci = opstiPodaci;
@@ -50,11 +48,10 @@ public class LokacijskaDozvola {
         this.nazivIdejnogResenja = nazivIdejnogResenja;
         this.datumIzdavanja = datumIzdavanja;
         this.informacijeOLokacijiId = informacijeOLokacijiId;
-        this.informacijeOLokaciji = informacijeOLokaciji;
         idejnaResenja = new ArrayList<>();
     }
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -86,15 +83,51 @@ public class LokacijskaDozvola {
         return datumIzdavanja;
     }
 
-    public UUID getInformacijeOLokacijiId() {
+    public Integer getInformacijeOLokacijiId() {
         return informacijeOLokacijiId;
-    }
-
-    public InformacijeOLokaciji getInformacijeOLokaciji() {
-        return informacijeOLokaciji;
     }
 
     public List<IdejnoResenje> getIdejnaResenja() {
         return idejnaResenja;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setNaziv(String naziv) {
+        this.naziv = naziv;
+    }
+
+    public void setOpstiPodaci(String opstiPodaci) {
+        this.opstiPodaci = opstiPodaci;
+    }
+
+    public void setLokacijskiUslovi(String lokacijskiUslovi) {
+        this.lokacijskiUslovi = lokacijskiUslovi;
+    }
+
+    public void setBrojParcele(Long brojParcele) {
+        this.brojParcele = brojParcele;
+    }
+
+    public void setPovrsinaParcele(Long povrsinaParcele) {
+        this.povrsinaParcele = povrsinaParcele;
+    }
+
+    public void setNazivIdejnogResenja(String nazivIdejnogResenja) {
+        this.nazivIdejnogResenja = nazivIdejnogResenja;
+    }
+
+    public void setDatumIzdavanja(Date datumIzdavanja) {
+        this.datumIzdavanja = datumIzdavanja;
+    }
+
+    public void setInformacijeOLokacijiId(Integer informacijeOLokacijiId) {
+        this.informacijeOLokacijiId = informacijeOLokacijiId;
+    }
+
+    public void setIdejnaResenja(List<IdejnoResenje> idejnaResenja) {
+        this.idejnaResenja = idejnaResenja;
     }
 }

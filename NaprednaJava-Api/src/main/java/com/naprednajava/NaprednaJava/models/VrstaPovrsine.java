@@ -5,24 +5,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class VrstaPovrsine {
 
-    private final UUID id;
+    private final Integer id;
 
     @NotBlank
-    private final String naziv;
+    private String naziv;
 
-    private final List<Prostorija> prostorije;
+    private List<Prostorija> prostorije;
 
-    public VrstaPovrsine(@JsonProperty("id") UUID id, @JsonProperty("naziv") String naziv) {
+    public VrstaPovrsine(@JsonProperty("id") Integer id, @JsonProperty("naziv") String naziv) {
         this.id = id;
         this.naziv = naziv;
         prostorije = new ArrayList<>();
     }
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -32,5 +31,13 @@ public class VrstaPovrsine {
 
     public List<Prostorija> getProstorije() {
         return prostorije;
+    }
+
+    public void setNaziv(String naziv) {
+        this.naziv = naziv;
+    }
+
+    public void setProstorije(List<Prostorija> prostorije) {
+        this.prostorije = prostorije;
     }
 }

@@ -3,13 +3,13 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AlertService } from 'src/app/services/alert.service';
 import { ProjekatZaGradjevinskuDozvoluService } from 'src/app/services/projekat-za-gradjevinsku-dozvolu.service';
 import { ProjekatZaGradjevinskuDozvolu, STATUSIDOKUMENTA, StatusDokumenta } from 'src/app/models/projekat-za-gradjevinsku-dozvolu.model';
-import { StatusDokumentaPipe } from 'src/app/pipes/status-dokumenta.pipe';
 import { IdejnoResenje } from 'src/app/models/idejno-resenje.model';
 import { GlavniProjektantService } from 'src/app/services/glavni-projektant.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { Povrsina, Status } from 'src/app/models/povrsina.model';
 import { VrstaPovrsine } from 'src/app/models/vrsta-povrsine.model';
 import { Prostorija } from 'src/app/models/prostorija.model';
+import { StatusDokumentaPipe } from 'src/app/pipes/status-dokumenta.pipe';
 
 @Component({
   selector: 'projekat-za-gradjevinsku-dozvolu-dialog',
@@ -106,7 +106,7 @@ export class ProjekatZaGradjevinskuDozvoluDialog implements OnInit {
   setNazivGlavnogProjektanta(ir: IdejnoResenje) {
     this.glavniProjektantService.getById(ir.glavniProjektantId).subscribe(result => {
       if (result) {
-        this.nazivProjektanta = result.imePrezime;
+        this.nazivProjektanta = result.resultObject.imePrezime;
         this.selectedIr = ir.naziv;
       }
     });

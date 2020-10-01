@@ -14,7 +14,7 @@ const httpOptions = {
 
 export class LokacijskaDozvolaService {
 
-    url = 'https://localhost:44306/api/lokacijskeDozvole/';
+    url = 'http://localhost:8080/api/lokacijskeDozvole/';
 
     constructor(private http: HttpClient) { }
 
@@ -22,8 +22,8 @@ export class LokacijskaDozvolaService {
         return this.http.get<LokacijskaDozvola[]>(this.url);
     }
 
-    getById(id: number): Observable<LokacijskaDozvola> {
-        return this.http.get<LokacijskaDozvola>(this.url + `${id}`);
+    getById(id: number): Observable<ServiceResult> {
+        return this.http.get<ServiceResult>(this.url + `${id}`);
     }
 
     add(lokacijskaDozvola: LokacijskaDozvola): Observable<ServiceResult> {

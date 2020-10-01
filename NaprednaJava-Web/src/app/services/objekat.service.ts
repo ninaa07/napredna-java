@@ -14,7 +14,7 @@ const httpOptions = {
 
 export class ObjekatService {
 
-    url = 'https://localhost:44306/api/objekti/';
+    url = 'http://localhost:8080/api/objekti/';
 
     constructor(private http: HttpClient) { }
 
@@ -22,8 +22,8 @@ export class ObjekatService {
         return this.http.get<Objekat[]>(this.url);
     }
 
-    getById(id: number): Observable<Objekat> {
-        return this.http.get<Objekat>(this.url + `${id}`);
+    getById(id: number): Observable<ServiceResult> {
+        return this.http.get<ServiceResult>(this.url + `${id}`);
     }
 
     add(objekat: Objekat): Observable<ServiceResult> {

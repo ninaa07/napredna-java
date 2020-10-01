@@ -14,7 +14,7 @@ const httpOptions = {
 
 export class InformacijeOLokacijiService {
 
-    url = 'https://localhost:44306/api/informacijeOLokaciji/';
+    url = 'http://localhost:8080/api/informacijeOLokaciji/';
 
     constructor(private http: HttpClient) { }
 
@@ -22,8 +22,8 @@ export class InformacijeOLokacijiService {
         return this.http.get<InformacijeOLokaciji[]>(this.url);
     }
 
-    getById(id: number): Observable<InformacijeOLokaciji> {
-        return this.http.get<InformacijeOLokaciji>(this.url + `${id}`);
+    getById(id: number): Observable<ServiceResult> {
+        return this.http.get<ServiceResult>(this.url + `${id}`);
     }
 
     add(informacijeOLokaciji: InformacijeOLokaciji): Observable<ServiceResult> {

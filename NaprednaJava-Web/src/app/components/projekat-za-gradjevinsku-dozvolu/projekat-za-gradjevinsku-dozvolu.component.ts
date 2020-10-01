@@ -61,7 +61,7 @@ export class ProjekatZaGradjevinskuDozvoluComponent implements OnInit {
       const dialogRef = this.dialog.open(ProjekatZaGradjevinskuDozvoluDialog, {
         width: '900px',
         data: {
-          projekatZaGD: result,
+          projekatZaGD: result.resultObject,
           vrstePovrsina: this.vrstePovrsina,
           action: 'view',
           title: 'Pregled projekta za građevinsku dozvolu',

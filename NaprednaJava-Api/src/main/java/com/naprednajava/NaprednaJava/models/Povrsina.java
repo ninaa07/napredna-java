@@ -4,38 +4,34 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.naprednajava.NaprednaJava.models.Enums.Status;
 
 import javax.validation.constraints.NotBlank;
-import java.util.UUID;
 
 public class Povrsina {
 
-    private final UUID id;
+    @NotBlank
+    private Integer id;
 
     @NotBlank
-    private final Integer oznaka;
+    private Integer oznaka;
 
     @NotBlank
-    private final String naziv;
+    private String naziv;
 
     @NotBlank
-    private final String vrstaPoda;
+    private String vrstaPoda;
 
     @NotBlank
-    private final String prostorijaNaziv;
+    private String prostorijaNaziv;
 
     @NotBlank
-    private final Status status;
+    private Status status;
 
     @NotBlank
-    private final UUID vrstaPovrsineId;
-
-    private final VrstaPovrsine vrstaPovrsine;
+    private Integer vrstaPovrsineId;
 
     @NotBlank
-    private final UUID projekatZaGradjevinskuDozvoluId;
+    private Integer projekatZaGradjevinskuDozvoluId;
 
-    private final ProjekatZaGradjevinskuDozvolu projekatZaGradjevinskuDozvolu;
-
-    public Povrsina(@JsonProperty("id") UUID id, @JsonProperty("oznaka") Integer oznaka, @JsonProperty("naziv")  String naziv, @JsonProperty("vrstaPoda")  String vrstaPoda, @JsonProperty("prostorijaNaziv")  String prostorijaNaziv, @JsonProperty("status")  Status status, @JsonProperty("vrstaPovrsineId")  UUID vrstaPovrsineId, VrstaPovrsine vrstaPovrsine, @JsonProperty("projekatZaGradjevinskuDozvoluId") UUID projekatZaGradjevinskuDozvoluId, ProjekatZaGradjevinskuDozvolu projekatZaGradjevinskuDozvolu) {
+    public Povrsina(@JsonProperty("id") Integer id, @JsonProperty("oznaka") Integer oznaka, @JsonProperty("naziv") String naziv, @JsonProperty("vrstaPoda") String vrstaPoda, @JsonProperty("prostorijaNaziv") String prostorijaNaziv, @JsonProperty("status") Status status, @JsonProperty("vrstaPovrsineId") Integer vrstaPovrsineId, @JsonProperty("projekatZaGradjevinskuDozvoluId") Integer projekatZaGradjevinskuDozvoluId) {
         this.id = id;
         this.oznaka = oznaka;
         this.naziv = naziv;
@@ -43,12 +39,10 @@ public class Povrsina {
         this.prostorijaNaziv = prostorijaNaziv;
         this.status = status;
         this.vrstaPovrsineId = vrstaPovrsineId;
-        this.vrstaPovrsine = vrstaPovrsine;
         this.projekatZaGradjevinskuDozvoluId = projekatZaGradjevinskuDozvoluId;
-        this.projekatZaGradjevinskuDozvolu = projekatZaGradjevinskuDozvolu;
     }
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -72,19 +66,43 @@ public class Povrsina {
         return status;
     }
 
-    public UUID getVrstaPovrsineId() {
+    public Integer getVrstaPovrsineId() {
         return vrstaPovrsineId;
     }
 
-    public VrstaPovrsine getVrstaPovrsine() {
-        return vrstaPovrsine;
-    }
-
-    public UUID getProjekatZaGradjevinskuDozvoluId() {
+    public Integer getProjekatZaGradjevinskuDozvoluId() {
         return projekatZaGradjevinskuDozvoluId;
     }
 
-    public ProjekatZaGradjevinskuDozvolu getProjekatZaGradjevinskuDozvolu() {
-        return projekatZaGradjevinskuDozvolu;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setOznaka(Integer oznaka) {
+        this.oznaka = oznaka;
+    }
+
+    public void setNaziv(String naziv) {
+        this.naziv = naziv;
+    }
+
+    public void setVrstaPoda(String vrstaPoda) {
+        this.vrstaPoda = vrstaPoda;
+    }
+
+    public void setProstorijaNaziv(String prostorijaNaziv) {
+        this.prostorijaNaziv = prostorijaNaziv;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public void setVrstaPovrsineId(Integer vrstaPovrsineId) {
+        this.vrstaPovrsineId = vrstaPovrsineId;
+    }
+
+    public void setProjekatZaGradjevinskuDozvoluId(Integer projekatZaGradjevinskuDozvoluId) {
+        this.projekatZaGradjevinskuDozvoluId = projekatZaGradjevinskuDozvoluId;
     }
 }

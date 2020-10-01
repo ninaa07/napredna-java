@@ -14,7 +14,7 @@ const httpOptions = {
 
 export class GlavniProjektantService {
 
-  url = 'https://localhost:44306/api/glavniProjektanti/';
+  url = 'http://localhost:8080/api/glavniProjektanti/';
 
   constructor(private http: HttpClient) { }
 
@@ -22,8 +22,8 @@ export class GlavniProjektantService {
     return this.http.get<GlavniProjektant[]>(this.url);
   }
 
-  getById(id: number): Observable<GlavniProjektant> {
-    return this.http.get<GlavniProjektant>(this.url + `${id}`);
+  getById(id: number): Observable<ServiceResult> {
+    return this.http.get<ServiceResult>(this.url + `${id}`);
   }
 
   add(glavniProjektant: GlavniProjektant): Observable<ServiceResult> {

@@ -1,44 +1,43 @@
 <div class="row">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">LOKACIJSKA DOZVOLA</h3>
-                <i class="tim-icons icon-simple-add" matTooltip="Dodaj" (click)="add()"></i>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table tablesorter">
-                        <thead class="text-primary">
-                            <tr>
-                                <th>Naziv</th>
-                                <th>Opšti Podaci</th>
-                                <th>Lokacijski uslovi</th>
-                                <th>Broj Parcele</th>
-                                <th>Povrsina Parcele</th>
-                                <th>Datum Izdavanja</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let ld of lokacijskeDozvole">
-                                <td>{{ ld.naziv }}</td>
-                                <td>{{ ld.opstiPodaci }}</td>
-                                <td>{{ ld.lokacijskiUslovi }}</td>
-                                <td>{{ ld.brojParcele }}</td>
-                                <td>{{ ld.povrsinaParcele }}</td>
-                                <td>{{ ld.datumIzdavanja | date: 'dd/MM/yyyy' }}</td>
-                                <td>
-                                    <i class="tim-icons icon-single-copy-04" id="view-icon" matTooltip="Pregledaj"
-                                        (click)="open(ld.id)"></i>
-                                    <i class="tim-icons icon-pencil" id="edit-icon" matTooltip="Izmeni"
-                                        (click)="edit(ld)"></i>
-                                    <i class="tim-icons icon-trash-simple" id="delete-icon" matTooltip="Obriši"
-                                        (click)="delete(ld.id)"></i>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">LOKACIJSKA DOZVOLA</h3>
+        <i class="tim-icons icon-simple-add" matTooltip="Dodaj" (click)="add()"></i>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table tablesorter">
+            <thead class="text-primary">
+              <tr>
+                <th>Naziv</th>
+                <th>Opšti Podaci</th>
+                <th>Lokacijski uslovi</th>
+                <th>Broj Parcele</th>
+                <th>Povrsina Parcele</th>
+                <th>Datum Izdavanja</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let ld of lokacijskeDozvole">
+                <td>{{ ld.naziv }}</td>
+                <td>{{ ld.opstiPodaci }}</td>
+                <td>{{ ld.lokacijskiUslovi }}</td>
+                <td>{{ ld.brojParcele }}</td>
+                <td>{{ ld.povrsinaParcele }}</td>
+                <td>{{ ld.datumIzdavanja | date: 'dd/MM/yyyy' }}</td>
+                <td>
+                  <i class="tim-icons icon-single-copy-04" id="view-icon" matTooltip="Pregledaj"
+                    (click)="open(ld.id)"></i>
+                  <i class="tim-icons icon-pencil" id="edit-icon" matTooltip="Izmeni" (click)="edit(ld)"></i>
+                  <i class="tim-icons icon-trash-simple" id="delete-icon" matTooltip="Obriši"
+                    (click)="delete(ld.id)"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+      </div>
     </div>
+  </div>
 </div>

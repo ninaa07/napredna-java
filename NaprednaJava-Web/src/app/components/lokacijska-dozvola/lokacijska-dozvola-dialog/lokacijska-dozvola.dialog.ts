@@ -29,6 +29,7 @@ export class LokacijskaDozvolaDialog implements OnInit {
     private alert: AlertService) { }
 
   ngOnInit(): void {
+
     this.informacijeOLokacijiList = this.data.informacijeOLokaciji;
     this.lokacijskaDozvola = this.data.lokacijskaDozvola ? this.data.lokacijskaDozvola : new LokacijskaDozvola();
 
@@ -47,6 +48,8 @@ export class LokacijskaDozvolaDialog implements OnInit {
     if (!this.validate()) {
       return;
     }
+
+    debugger;
 
     if (!this.lokacijskaDozvola.id) {
       this.lokacijskaDozvola.nazivIdejnogResenja = this.selectedIr;
@@ -86,7 +89,7 @@ export class LokacijskaDozvolaDialog implements OnInit {
   setNazivObjekta(ir: IdejnoResenje) {
     this.objekatService.getById(ir.objekatId).subscribe(result => {
       if (result) {
-        this.nazivObjekta = result.naziv;
+        this.nazivObjekta = result.resultObject.naziv;
       }
     });
   }
